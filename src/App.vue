@@ -41,19 +41,24 @@ export default {
   data() {
     return {
       mathRandomVerticall: Math.round(Math.random() * 100) + 100,
-      mathRandomHorizontal: Math.round(Math.random() * 10) + 10,
+      mathRandomHorizontal: Math.round(Math.random() * 10) + 11,
     };
   },
   methods: {
     setAnimation(target) {
-      const borderRadius = parseFloat(target.style.borderTopLeftRadius);
-      const result = borderRadius + borderRadius * 0.2;
-      target.style.borderRadius = result + "px";
+      const currentWidth = parseFloat(window.getComputedStyle(target).width);
+      const currentHeight = parseFloat(window.getComputedStyle(target).height);
+      const reductionPercentage = 0.2;
+
+      const newWidth = currentWidth * (1 - reductionPercentage);
+      const newHeight = currentHeight * (1 - reductionPercentage);
+      target.style.transition = "width 0.3s ease, height 0.3s ease";
+      target.style.width = newWidth + "px";
+      target.style.height = newHeight + "px";
     },
     delAnimation(target) {
-      const borderRadius = parseFloat(target.style.borderTopLeftRadius);
-      const result = borderRadius - borderRadius * 0.2;
-      target.style.borderRadius = result + "px";
+      target.style.width = "";
+      target.style.height = "";
     },
   },
 };
