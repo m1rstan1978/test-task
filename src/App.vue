@@ -12,6 +12,8 @@
             :style="{
               borderRadius: Math.round(Math.random() * 50) + 'px',
             }"
+            @mouseenter="setAnimation($event.target)"
+            @mouseleave="delAnimation($event.target)"
           >
             {{ Math.round(Math.random() * 100) }}
           </div>
