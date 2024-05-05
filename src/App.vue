@@ -12,8 +12,6 @@
             :style="{
               borderRadius: Math.round(Math.random() * 50) + 'px',
             }"
-            @mouseenter="setAnimation($event.target)"
-            @mouseleave="delAnimation($event.target)"
           >
             {{ Math.round(Math.random() * 100) }}
           </div>
@@ -24,9 +22,6 @@
             :style="{
               borderRadius: Math.round(Math.random() * 50) + 'px',
             }"
-            ref="square_horizontal"
-            @mouseenter="setAnimation($event.target)"
-            @mouseleave="delAnimation($event.target)"
           >
             {{ Math.round(Math.random() * 100) }}
           </div>
@@ -43,23 +38,6 @@ export default {
       mathRandomVerticall: Math.round(Math.random() * 100) + 100,
       mathRandomHorizontal: Math.round(Math.random() * 10) + 11,
     };
-  },
-  methods: {
-    setAnimation(target) {
-      const currentWidth = parseFloat(window.getComputedStyle(target).width);
-      const currentHeight = parseFloat(window.getComputedStyle(target).height);
-      const reductionPercentage = 0.2;
-
-      const newWidth = currentWidth * (1 - reductionPercentage);
-      const newHeight = currentHeight * (1 - reductionPercentage);
-      target.style.transition = "width 0.3s ease, height 0.3s ease";
-      target.style.width = newWidth + "px";
-      target.style.height = newHeight + "px";
-    },
-    delAnimation(target) {
-      target.style.width = "";
-      target.style.height = "";
-    },
   },
 };
 </script>
@@ -95,6 +73,9 @@ export default {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+.square__item_block:hover {
+  transform: scale(0.8);
 }
 .square__item_content {
   display: flex;
